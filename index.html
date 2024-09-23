@@ -79,7 +79,7 @@
             if (name && comment) {
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment');
-                commentDiv.innerHTML = `<strong>${name}</strong>: ${comment} <button onclick="replyToComment(this)">Trả lời</button>`;
+                commentDiv.innerHTML = `<strong>${name}</strong>: ${comment} <button onclick="replyToComment(this)">Reply</button>`;
                 commentSection.appendChild(commentDiv);
                 document.getElementById('name').value = '';
                 document.getElementById('comment').value = '';
@@ -95,7 +95,7 @@
                 <button onclick="submitReply(this)">Gửi</button>
             `;
             parentComment.appendChild(replyDiv);
-            button.remove(); // Loại bỏ nút "Trả lời" sau khi nhấn
+            button.remove(); // Loại bỏ nút "Reply" sau khi nhấn
         }
 
         function submitReply(button) {
@@ -121,6 +121,7 @@
     <a href="#" onclick="showSection('home')">Trang chủ</a>
     <a href="#" onclick="showSection('about-us')">About Us</a>
     <a href="#" onclick="showSection('contact')">Liên hệ</a>
+    <a href="#" onclick="showSection('resources')">Resources</a>
 </nav>
 
 <div class="container" id="home">
@@ -146,7 +147,7 @@
 
 <div class="container" id="about-us">
     <h2>About Us</h2>
-    <p>Xin chào! Tôi là [Tên của bạn], chủ blog Econopedia. Blog này được tạo ra với mục đích chia sẻ kiến thức về kinh tế, từ các chủ đề như tài chính cá nhân, kinh tế vi mô, vĩ mô đến các xu hướng kinh tế hiện nay.</p>
+    <p>Chào mừng mọi người đã đến với trang blog về kinh tế đầy tâm huyết của mình, Econopedia. Mình là Đạt, một học sinh cấp 3 tại trường THPT Chuyên Lê Quý Đôn. Ở blog này, mình sẽ cố gắng chia sẻ tất cả những thông tin, kiến thức bổ ích về kinh tế. Ở Việt Nam, các kiến thức về kinh tế học chưa quá phổ biến với các bạn trẻ, nên qua trang web này, mình muốn chia sẻ với các bạn các khái niệm mới lạ cũng như là các thông tin về các tài liệu học kinh tế cũng như các cuộc thi.</p>
 </div>
 
 <div class="container" id="contact">
@@ -157,6 +158,11 @@
         <li>LinkedIn: <a href="#">linkedin.com/in/username</a></li>
         <li>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></li>
     </ul>
+</div>
+
+<div class="container" id="resources">
+    <h2>Resources</h2>
+    <p>Tài liệu về kinh tế học.</p>
 </div>
 
 <footer>
