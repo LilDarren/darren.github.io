@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econopedia - Blog Kinh tế</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background-color: #8b572a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #8b572a;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Ẩn các container khác */
+        }
+        #home {
+            display: block; /* Trang chủ hiện ra đầu tiên */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #8b572a;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .blog-post {
+            margin-bottom: 40px;
+        }
+        .comment-section {
+            margin-top: 30px;
+        }
+        .comment {
+            margin-bottom: 10px;
+        }
+        .reply {
+            margin-left: 20px;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none'; // Ẩn tất cả các container
+            });
+            document.getElementById(sectionId).style.display = 'block'; // Hiện container được chọn
+        }
+        
+        function submitComment(event) {
+            event.preventDefault(); // Ngăn chặn việc reload trang
+            const commentSection = document.querySelector('.comment-section');
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+
+            if (name && comment) {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `<strong>${name}</strong>: ${comment} <button onclick="replyToComment(this)">Trả lời</button>`;
+                commentSection.appendChild(commentDiv);
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+            }
+        }
+
+        function replyToComment(button) {
+            const parentComment = button.parentElement;
+            const replyDiv = document.createElement('div');
+            replyDiv.classList.add('reply');
+            replyDiv.innerHTML = `
+                <input type="text" placeholder="Nhập câu trả lời của bạn">
+                <button onclick="submitReply(this)">Gửi</button>
+            `;
+            parentComment.appendChild(replyDiv);
+            button.remove(); // Loại bỏ nút "Trả lời" sau khi nhấn
+        }
+
+        function submitReply(button) {
+            const replyInput = button.previousElementSibling;
+            const replyText = replyInput.value;
+
+            if (replyText) {
+                const replyComment = document.createElement('div');
+                replyComment.innerHTML = `<strong>Bạn</strong>: ${replyText}`;
+                button.parentElement.replaceWith(replyComment); // Thay thế phần trả lời bằng đoạn text đã nhập
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Econopedia</h1>
+    <p>Chia sẻ kiến thức kinh tế</p>
+</header>
+
+<nav>
+    <a href="#" onclick="showSection('home')">Trang chủ</a>
+    <a href="#" onclick="showSection('about-us')">About Us</a>
+    <a href="#" onclick="showSection('contact')">Liên hệ</a>
+</nav>
+
+<div class="container" id="home">
+    <h2>Bài viết mới nhất</h2>
+    <div class="blog-post">
+        <h3>Tiêu đề bài viết</h3>
+        <p>Ngày đăng: 23/09/2024</p>
+        <p>Tóm tắt nội dung bài viết mới nhất của bạn...</p>
+        <a href="#">Đọc tiếp...</a>
+    </div>
+
+    <div class="comment-section">
+        <h2>Bình luận</h2>
+        <form onsubmit="submitComment(event)">
+            <label for="name">Tên:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="comment">Bình luận:</label><br>
+            <textarea id="comment" name="comment" rows="4" required></textarea><br><br>
+            <input type="submit" value="Gửi">
+        </form>
+    </div>
+</div>
+
+<div class="container" id="about-us">
+    <h2>About Us</h2>
+    <p>Xin chào! Tôi là [Tên của bạn], chủ blog Econopedia. Blog này được tạo ra với mục đích chia sẻ kiến thức về kinh tế, từ các chủ đề như tài chính cá nhân, kinh tế vi mô, vĩ mô đến các xu hướng kinh tế hiện nay.</p>
+</div>
+
+<div class="container" id="contact">
+    <h2>Liên hệ</h2>
+    <p>Bạn có thể kết nối với tôi qua các nền tảng sau:</p>
+    <ul>
+        <li>Facebook: <a href="#">facebook.com/username</a></li>
+        <li>LinkedIn: <a href="#">linkedin.com/in/username</a></li>
+        <li>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+    </ul>
+</div>
+
+<footer>
+    <p>Econopedia © 2024. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
